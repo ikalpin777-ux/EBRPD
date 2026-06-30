@@ -1,275 +1,271 @@
-
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Branch — Information Technology</title>
 <style>
 *{box-sizing:border-box;margin:0;padding:0;}
-:root{--pine:#1C4332;--pine-mid:#2D5A3D;--pine-light:#3B7A52;--gold:#C9A227;--paper:#F7F5F0;--white:#fff;--ink:#1A1F1C;--slate:#4A5249;--muted:#7A807A;--line:#DDD;--sans:"Segoe UI",system-ui,sans-serif;}
-body{font-family:var(--sans);background:var(--paper);color:var(--ink);}
-.topbar{background:var(--pine);color:#fff;padding:4px 16px;font-size:11px;letter-spacing:.3px;}
-.navbar{background:var(--pine);display:flex;align-items:center;gap:0;padding:0 16px;border-bottom:3px solid var(--gold);}
-.brand{display:flex;align-items:center;gap:10px;padding:10px 0;margin-right:24px;}
-.logo-circle{width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,.18);display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700;color:#fff;flex:none;}
-.brand-name{color:#fff;font-size:17px;font-weight:600;letter-spacing:.2px;}
-.nav-links{display:flex;align-items:stretch;gap:0;flex:1;}
-.nav-link{color:rgba(255,255,255,.85);font-size:13.5px;padding:0 14px;height:56px;display:flex;align-items:center;gap:5px;cursor:pointer;border-bottom:3px solid transparent;transition:background .1s;text-decoration:none;}
-.nav-link:hover{background:rgba(255,255,255,.1);}
-.nav-link.active{color:#fff;border-bottom-color:var(--gold);font-weight:500;}
-.nav-link .chevron{font-size:10px;opacity:.7;}
-.page{display:grid;grid-template-columns:1fr 220px;gap:0;max-width:100%;}
+:root{--pine:#1C4332;--pine-mid:#2D5A3D;--pine-light:#3B7A52;--gold:#C9A227;--paper:#F6F4EF;--white:#fff;--ink:#1A1F1C;--slate:#535B52;--muted:#868C84;--line:#E2E0D8;--tint:#EAF1EC;--sans:"Segoe UI",system-ui,-apple-system,sans-serif;}
+html,body{height:100%;}
+body{font-family:var(--sans);color:var(--ink);background:#E7E5DD;padding:24px;}
+.frame{max-width:1120px;margin:0 auto;background:var(--paper);border:0.5px solid var(--line);border-radius:14px;overflow:hidden;box-shadow:0 4px 18px rgba(0,0,0,.09);}
+.util{background:#143025;color:#cfe0d5;display:flex;align-items:center;justify-content:space-between;padding:7px 18px;font-size:12px;}
+.util .srch{display:flex;align-items:center;gap:7px;background:rgba(255,255,255,.12);border-radius:20px;padding:5px 14px;color:#dfeae2;width:300px;max-width:40%;cursor:text;}
+.util .ricons{display:flex;gap:16px;align-items:center;font-size:16px;}
+.util .ava{background:var(--gold);color:#2A1E04;width:24px;height:24px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-weight:700;font-size:11px;}
+.nav{background:var(--pine);display:flex;align-items:center;padding:0 18px;border-bottom:3px solid var(--gold);flex-wrap:wrap;}
+.brand{display:flex;align-items:center;gap:12px;padding:9px 0;margin-right:24px;}
+.logo-tile{background:#fff;border-radius:8px;padding:4px 6px;display:flex;align-items:center;}
+.logo-tile img{height:34px;width:auto;display:block;}
+.brandname{color:#fff;font-size:17px;font-weight:600;}
+.nav a{display:flex;flex-direction:column;align-items:center;gap:3px;color:rgba(255,255,255,.82);font-size:12px;padding:9px 16px 7px;cursor:pointer;border-bottom:3px solid transparent;text-decoration:none;transition:background .12s;}
+.nav a .tio{font-size:19px;}
+.nav a:hover{background:rgba(255,255,255,.1);}
+.nav a.on{color:#fff;border-bottom-color:var(--gold);}
+.body{display:grid;grid-template-columns:1fr 230px;}
+@media(max-width:760px){.body{grid-template-columns:1fr;}}
 .main{min-width:0;}
-.hero{background:var(--pine-mid);height:130px;display:flex;align-items:flex-end;padding:16px 20px;position:relative;overflow:hidden;}
-.hero-bg{position:absolute;inset:0;background:linear-gradient(135deg,#1C4332 0%,#2D5A3D 50%,#1C4332 100%);opacity:.9;}
-.hero-trees{position:absolute;bottom:0;left:0;right:0;height:90px;opacity:.18;}
-.hero-text{position:relative;color:#fff;font-size:18px;font-weight:500;letter-spacing:.2px;}
-.content{padding:18px 20px;}
-.spoke-bar{display:flex;gap:8px;margin-bottom:18px;flex-wrap:wrap;}
-.spoke-btn{background:var(--pine);color:#fff;border:none;padding:7px 14px;border-radius:6px;font-size:13px;cursor:pointer;font-family:var(--sans);font-weight:500;transition:background .12s;display:flex;align-items:center;gap:6px;}
-.spoke-btn:hover{background:var(--pine-light);}
-.spoke-btn.active{background:var(--gold);color:#2A1E04;}
-.section-title{font-size:15px;font-weight:600;color:var(--ink);margin-bottom:12px;padding-bottom:6px;border-bottom:2px solid var(--pine);display:flex;align-items:center;gap:8px;}
-.section-title i{color:var(--pine);font-size:16px;}
-.quick-cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:8px;margin-bottom:20px;}
-.qcard{background:var(--pine);color:#fff;border-radius:8px;padding:11px 13px;cursor:pointer;transition:background .12s;display:flex;align-items:center;gap:10px;}
-.qcard:hover{background:var(--pine-light);}
-.qcard i{font-size:18px;opacity:.9;flex:none;}
-.qcard-label{font-size:13px;font-weight:500;line-height:1.3;}
-.service-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:10px;margin-bottom:20px;}
-.scard{background:var(--white);border:0.5px solid var(--line);border-radius:10px;padding:12px 14px;cursor:pointer;transition:border-color .12s;}
-.scard:hover{border-color:var(--pine);}
-.scard i{font-size:18px;color:var(--pine);margin-bottom:6px;}
-.scard-title{font-size:13.5px;font-weight:600;color:var(--ink);margin-bottom:3px;}
-.scard-desc{font-size:12px;color:var(--muted);line-height:1.45;}
-.sidebar{background:var(--white);border-left:0.5px solid var(--line);padding:16px 14px;}
-.sidebar-section{margin-bottom:20px;}
-.sidebar-title{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;color:var(--slate);margin-bottom:10px;}
-.news-item{padding:8px 0;border-bottom:0.5px solid var(--line);cursor:pointer;}
-.news-item:last-child{border-bottom:none;}
-.news-label{font-size:13px;color:var(--pine);font-weight:500;line-height:1.35;}
-.news-label:hover{text-decoration:underline;}
-.news-date{font-size:11px;color:var(--muted);margin-top:2px;}
-.div-item{padding:7px 0;border-bottom:0.5px solid var(--line);cursor:pointer;}
-.div-item:last-child{border-bottom:none;}
-.div-name{font-size:13px;font-weight:500;color:var(--pine);display:flex;align-items:center;gap:6px;}
-.div-name:hover{text-decoration:underline;}
-.div-sub{font-size:11px;color:var(--muted);margin-top:1px;padding-left:20px;}
-.spoke-content{display:none;}
-.spoke-content.active{display:block;}
-.breadcrumb{font-size:12px;color:var(--muted);margin-bottom:12px;display:flex;align-items:center;gap:6px;}
-.breadcrumb a{color:var(--pine);text-decoration:none;}
-.breadcrumb a:hover{text-decoration:underline;}
-.project-card{background:var(--white);border:0.5px solid var(--line);border-radius:10px;padding:12px 14px;margin-bottom:8px;display:flex;align-items:center;gap:12px;cursor:pointer;}
-.project-card:hover{border-color:var(--pine);}
-.proj-status{font-size:11px;padding:3px 8px;border-radius:20px;font-weight:600;white-space:nowrap;}
-.proj-active{background:#E4EFE7;color:#1C4332;}
-.proj-planned{background:#FEF3C7;color:#78350F;}
-.staff-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:10px;}
-.staff-card{background:var(--white);border:0.5px solid var(--line);border-radius:10px;padding:12px;text-align:center;}
-.staff-av{width:44px;height:44px;border-radius:50%;background:var(--pine);color:#fff;font-size:14px;font-weight:600;display:flex;align-items:center;justify-content:center;margin:0 auto 8px;}
-.staff-name{font-size:13px;font-weight:600;color:var(--ink);}
-.staff-role{font-size:11px;color:var(--muted);margin-top:2px;}
+.hero{position:relative;min-height:160px;display:flex;flex-direction:column;justify-content:center;padding:22px 26px;overflow:hidden;}
+.hero .heroimg{position:absolute;inset:0;width:100%;height:100%;}
+.hero .hl{position:relative;color:#fff;font-size:22px;font-weight:600;text-shadow:0 1px 3px rgba(0,0,0,.3);}
+.hero .hs{position:relative;color:#eaf3ea;font-size:13.5px;margin-top:4px;max-width:70%;text-shadow:0 1px 2px rgba(0,0,0,.3);}
+.hero .chips{position:relative;display:flex;gap:8px;margin-top:14px;flex-wrap:wrap;}
+.hero .chip{background:rgba(20,48,37,.55);color:#fff;font-size:12px;padding:5px 12px;border-radius:20px;display:flex;align-items:center;gap:6px;cursor:pointer;backdrop-filter:blur(2px);}
+.hero .chip:hover{background:rgba(20,48,37,.75);}
+.wrap{padding:20px 26px;}
+.spk{display:none;}.spk.on{display:block;}
+.crumb{font-size:12px;color:var(--muted);margin-bottom:14px;display:flex;align-items:center;gap:6px;}
+.crumb a{color:var(--pine);text-decoration:none;cursor:pointer;}.crumb a:hover{text-decoration:underline;}
+.shdr{display:flex;align-items:center;gap:13px;margin-bottom:18px;}
+.shdr .ic{width:46px;height:46px;border-radius:12px;background:var(--tint);color:var(--pine);display:flex;align-items:center;justify-content:center;font-size:23px;flex:none;}
+.shdr h2{font-size:19px;font-weight:600;}.shdr p{font-size:12.5px;color:var(--muted);margin-top:2px;}
+.stitle{font-size:12px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;color:var(--slate);margin:20px 0 11px;display:flex;align-items:center;gap:8px;}
+.stitle .tio{color:var(--gold);font-size:16px;}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:10px;}
+.card{background:var(--white);border:0.5px solid var(--line);border-radius:12px;padding:14px;cursor:pointer;transition:border-color .12s,transform .08s;position:relative;}
+.card:hover{border-color:var(--pine);transform:translateY(-1px);}
+.card .cic{width:34px;height:34px;border-radius:10px;background:var(--tint);color:var(--pine);display:flex;align-items:center;justify-content:center;font-size:18px;margin-bottom:9px;}
+.card h4{font-size:13.5px;font-weight:600;margin-bottom:3px;}
+.card p{font-size:12px;color:var(--muted);line-height:1.5;}
+.card .go{position:absolute;top:14px;right:13px;color:var(--line);font-size:15px;}
+.card:hover .go{color:var(--pine);}
+.qtiles{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:9px;}
+.qt{background:var(--pine);color:#fff;border-radius:11px;padding:12px 14px;display:flex;align-items:center;gap:11px;cursor:pointer;}
+.qt:hover{background:var(--pine-light);}.qt .tio{font-size:18px;}.qt span{font-size:13px;font-weight:500;}
+.metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;}
+.metric{background:var(--white);border:0.5px solid var(--line);border-radius:12px;padding:14px;}
+.metric .v{font-size:25px;font-weight:600;color:var(--pine);}.metric .l{font-size:12px;color:var(--muted);margin-top:2px;}
+.metric .t{font-size:11.5px;margin-top:7px;font-weight:600;display:flex;align-items:center;gap:3px;}
+.up{color:#166534;}.dn{color:#9a6b16;}
+.dir{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:9px;}
+.person{background:var(--white);border:0.5px solid var(--line);border-radius:12px;padding:12px;text-align:center;}
+.av{width:42px;height:42px;border-radius:50%;background:var(--pine);color:#fff;font-size:14px;font-weight:600;display:flex;align-items:center;justify-content:center;margin:0 auto 8px;}
+.person .pn{font-size:13px;font-weight:600;}.person .pr{font-size:11px;color:var(--muted);margin-top:1px;}
+.plist .prow{background:var(--white);border:0.5px solid var(--line);border-radius:11px;padding:11px 13px;margin-bottom:8px;display:flex;align-items:center;gap:12px;cursor:pointer;}
+.plist .prow:hover{border-color:var(--pine);}
+.plist .prow .tio{font-size:21px;color:var(--pine);flex:none;}
+.plist .pinfo{flex:1;min-width:0;}.plist .pinfo .t{font-size:13.5px;font-weight:600;}.plist .pinfo .d{font-size:11.5px;color:var(--muted);margin-top:1px;}
+.badge{font-size:10.5px;font-weight:700;padding:3px 9px;border-radius:20px;white-space:nowrap;}
+.ba{background:#E4EFE7;color:#1C4332;}.bp{background:#FBF0D4;color:#7A560B;}
+.side{background:var(--white);border-left:0.5px solid var(--line);padding:17px 15px;}
+.side h5{font-size:11px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;color:var(--slate);margin:0 0 10px;}
+.ni{padding:8px 0;border-bottom:0.5px solid var(--line);cursor:pointer;}.ni:last-child{border:none;}
+.ni .t{font-size:12.5px;color:var(--pine);font-weight:500;line-height:1.35;}.ni .dt{font-size:11px;color:var(--muted);margin-top:1px;}
+.ss{margin-bottom:20px;}
+.contacts{font-size:12.5px;color:var(--slate);line-height:1.95;}.contacts .tio{font-size:13px;color:var(--pine);margin-right:6px;}
+.foot{text-align:center;font-size:11.5px;color:var(--muted);padding:14px;border-top:0.5px solid var(--line);background:var(--white);}
+.tio{width:1em;height:1em;display:inline-block;vertical-align:-0.14em;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex:none;}
 </style>
-
-<div style="background:var(--paper);border:0.5px solid var(--line);border-radius:12px;overflow:hidden;font-family:var(--sans);">
-
-  <div class="topbar">East Bay Regional Park District Intranet &mdash; Information Services</div>
-
-  <nav class="navbar">
-    <div class="brand">
-      <div class="logo-circle" aria-hidden="true"><i class="ti ti-tree" style="font-size:16px;"></i></div>
-      <span class="brand-name">The Branch &mdash; IS</span>
-    </div>
-    <div class="nav-links">
-      <a class="nav-link active" onclick="showSpoke('home')">Home</a>
-      <a class="nav-link" onclick="showSpoke('services')">Services <span class="chevron">&#9660;</span></a>
-      <a class="nav-link" onclick="showSpoke('projects')">Projects</a>
-      <a class="nav-link" onclick="showSpoke('operations')">Operations</a>
-      <a class="nav-link" onclick="showSpoke('processes')">Processes</a>
-      <a class="nav-link" onclick="showSpoke('staff')">Staff</a>
-    </div>
-  </nav>
-
-  <div class="page">
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><symbol id="i-home" viewBox="0 0 24 24"><path d="M5 12l7-7 7 7"/><path d="M6 10v9h12v-9"/><path d="M10 19v-5h4v5"/></symbol><symbol id="i-users" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3"/><path d="M3 20c0-3 3-5 6-5s6 2 6 5"/><path d="M16 6a3 3 0 0 1 0 6"/><path d="M21 20c0-2.5-2-4-4-4.5"/></symbol><symbol id="i-users-group" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3"/><path d="M3 20c0-3 3-5 6-5s6 2 6 5"/><path d="M16 6a3 3 0 0 1 0 6"/><path d="M21 20c0-2.5-2-4-4-4.5"/></symbol><symbol id="i-headset" viewBox="0 0 24 24"><path d="M4 14v-2a8 8 0 0 1 16 0v2"/><rect x="3" y="14" width="3.5" height="6" rx="1"/><rect x="17.5" y="14" width="3.5" height="6" rx="1"/><path d="M19 20a4 4 0 0 1-4 3h-2"/></symbol><symbol id="i-folders" viewBox="0 0 24 24"><path d="M4 8a2 2 0 0 1 2-2h3l2 2h5a2 2 0 0 1 2 2v6a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2z"/></symbol><symbol id="i-folder" viewBox="0 0 24 24"><path d="M4 8a2 2 0 0 1 2-2h3l2 2h5a2 2 0 0 1 2 2v6a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2z"/></symbol><symbol id="i-server-cog" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="5" rx="1"/><rect x="3" y="11" width="9" height="5" rx="1"/><circle cx="17.5" cy="16" r="2.5"/><path d="M17.5 12.7v-1M17.5 20.3v-1M21 16h-1M14 16h1M20 13.5l-.7.7M15 18l-.7.7M20 18.5l-.7-.7M15 14l-.7-.7"/></symbol><symbol id="i-route" viewBox="0 0 24 24"><circle cx="6" cy="19" r="2"/><circle cx="18" cy="5" r="2"/><path d="M8 19h6a3 3 0 0 0 0-6h-4a3 3 0 0 1 0-6h6"/></symbol><symbol id="i-route-2" viewBox="0 0 24 24"><circle cx="6" cy="19" r="2"/><circle cx="18" cy="5" r="2"/><path d="M8 19h6a3 3 0 0 0 0-6h-4a3 3 0 0 1 0-6h6"/></symbol><symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="6"/><path d="M21 21l-4-4"/></symbol><symbol id="i-apps" viewBox="0 0 24 24"><rect x="4" y="4" width="6" height="6" rx="1"/><rect x="14" y="4" width="6" height="6" rx="1"/><rect x="4" y="14" width="6" height="6" rx="1"/><rect x="14" y="14" width="6" height="6" rx="1"/></symbol><symbol id="i-layout-grid" viewBox="0 0 24 24"><rect x="4" y="4" width="6" height="6" rx="1"/><rect x="14" y="4" width="6" height="6" rx="1"/><rect x="4" y="14" width="6" height="6" rx="1"/><rect x="14" y="14" width="6" height="6" rx="1"/></symbol><symbol id="i-bell" viewBox="0 0 24 24"><path d="M6 10a6 6 0 0 1 12 0c0 5 2 6 2 6H4s2-1 2-6"/><path d="M10 20a2 2 0 0 0 4 0"/></symbol><symbol id="i-help-circle" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M9.5 9.5a2.5 2.5 0 0 1 4.5 1.5c0 1.5-2 2-2 3"/><line x1="12" y1="17" x2="12" y2="17.3"/></symbol><symbol id="i-ticket" viewBox="0 0 24 24"><rect x="3" y="6" width="18" height="12" rx="2"/><line x1="12" y1="6" x2="12" y2="18" stroke-dasharray="2 2"/></symbol><symbol id="i-key" viewBox="0 0 24 24"><circle cx="7" cy="12" r="3.5"/><path d="M10.5 12H21M18 12v3M15 12v2.5"/></symbol><symbol id="i-alert-circle" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><line x1="12" y1="8" x2="12" y2="13"/><line x1="12" y1="16" x2="12" y2="16.3"/></symbol><symbol id="i-alert-triangle" viewBox="0 0 24 24"><path d="M12 4l9 16H3z"/><line x1="12" y1="10" x2="12" y2="14"/><line x1="12" y1="17" x2="12" y2="17.3"/></symbol><symbol id="i-compass" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M15.5 8.5l-2.2 5.3-4.8 1.7 2.2-5.3z"/></symbol><symbol id="i-bolt" viewBox="0 0 24 24"><path d="M13 3L4 14h6l-1 7 9-11h-6z"/></symbol><symbol id="i-arrow-right" viewBox="0 0 24 24"><line x1="4" y1="12" x2="19" y2="12"/><path d="M14 7l5 5-5 5"/></symbol><symbol id="i-arrow-down-right" viewBox="0 0 24 24"><line x1="7" y1="7" x2="16" y2="16"/><path d="M16 10v6h-6"/></symbol><symbol id="i-arrow-up-right" viewBox="0 0 24 24"><line x1="7" y1="17" x2="16" y2="8"/><path d="M9 8h8v8"/></symbol><symbol id="i-desktop" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="12" rx="1"/><path d="M8 20h8M12 16v4"/></symbol><symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 3l8 3v6c0 5-4 8-8 9-4-1-8-4-8-9V6z"/></symbol><symbol id="i-shield-lock" viewBox="0 0 24 24"><path d="M12 3l8 3v6c0 5-4 8-8 9-4-1-8-4-8-9V6z"/><rect x="9.5" y="11" width="5" height="4" rx="1"/><path d="M10.5 11v-1a1.5 1.5 0 0 1 3 0v1"/></symbol><symbol id="i-shield-bolt" viewBox="0 0 24 24"><path d="M12 3l8 3v6c0 5-4 8-8 9-4-1-8-4-8-9V6z"/><path d="M12.5 8l-2.5 4.5h3l-1 3.5 3.5-5h-3z"/></symbol><symbol id="i-file-text" viewBox="0 0 24 24"><path d="M6 3h8l4 4v14H6z"/><path d="M14 3v4h4"/><line x1="9" y1="12" x2="15" y2="12"/><line x1="9" y1="15" x2="15" y2="15"/></symbol><symbol id="i-file-analytics" viewBox="0 0 24 24"><path d="M6 3h8l4 4v14H6z"/><path d="M14 3v4h4"/><path d="M9 17v-3M12 17v-5M15 17v-2"/></symbol><symbol id="i-file-certificate" viewBox="0 0 24 24"><path d="M6 3h7l5 5v3"/><path d="M13 3v5h5"/><path d="M6 3v18h5"/><circle cx="16" cy="16" r="3"/><path d="M14.5 18.5L14 22l2-1 2 1-.5-3.5"/></symbol><symbol id="i-report" viewBox="0 0 24 24"><path d="M6 3h8l4 4v14H6z"/><path d="M14 3v4h4"/><line x1="9" y1="12" x2="15" y2="12"/><line x1="9" y1="15" x2="13" y2="15"/></symbol><symbol id="i-sitemap" viewBox="0 0 24 24"><rect x="9" y="3" width="6" height="4" rx="1"/><rect x="3" y="15" width="6" height="4" rx="1"/><rect x="15" y="15" width="6" height="4" rx="1"/><path d="M12 7v4M6 15v-2h12v2"/></symbol><symbol id="i-address-book" viewBox="0 0 24 24"><rect x="6" y="3" width="13" height="18" rx="2"/><circle cx="12.5" cy="10" r="2.3"/><path d="M9 16c0-2 1.6-3 3.5-3s3.5 1 3.5 3"/><line x1="3" y1="8" x2="6" y2="8"/><line x1="3" y1="14" x2="6" y2="14"/></symbol><symbol id="i-id-badge-2" viewBox="0 0 24 24"><rect x="4" y="3" width="16" height="18" rx="2"/><circle cx="9" cy="9" r="2"/><path d="M6 15c0-1.5 1.3-2.5 3-2.5s3 1 3 2.5"/><line x1="14" y1="8" x2="18" y2="8"/><line x1="14" y1="12" x2="18" y2="12"/></symbol><symbol id="i-target-arrow" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="4"/><circle cx="12" cy="12" r="0.6"/></symbol><symbol id="i-list-details" viewBox="0 0 24 24"><line x1="9" y1="6" x2="20" y2="6"/><line x1="9" y1="12" x2="20" y2="12"/><line x1="9" y1="18" x2="20" y2="18"/><rect x="4" y="4.7" width="2.6" height="2.6"/><rect x="4" y="10.7" width="2.6" height="2.6"/><rect x="4" y="16.7" width="2.6" height="2.6"/></symbol><symbol id="i-server" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="6" rx="1"/><rect x="3" y="13" width="18" height="6" rx="1"/><line x1="7" y1="8" x2="7" y2="8.3"/><line x1="7" y1="16" x2="7" y2="16.3"/></symbol><symbol id="i-table" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="1"/><line x1="3" y1="10" x2="21" y2="10"/><line x1="3" y1="15" x2="21" y2="15"/><line x1="12" y1="4" x2="12" y2="20"/></symbol><symbol id="i-template" viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="1"/><line x1="4" y1="9" x2="20" y2="9"/><line x1="10" y1="9" x2="10" y2="20"/></symbol><symbol id="i-brand-sharepoint" viewBox="0 0 24 24"><circle cx="6" cy="12" r="2.5"/><circle cx="17" cy="6" r="2.5"/><circle cx="17" cy="18" r="2.5"/><path d="M8.4 11l6.2-3.6M8.4 13l6.2 3.6"/></symbol><symbol id="i-database" viewBox="0 0 24 24"><ellipse cx="12" cy="6" rx="7" ry="3"/><path d="M5 6v6c0 1.7 3 3 7 3s7-1.3 7-3V6"/><path d="M5 12v6c0 1.7 3 3 7 3s7-1.3 7-3v-6"/></symbol><symbol id="i-database-cog" viewBox="0 0 24 24"><ellipse cx="10" cy="6" rx="6" ry="2.5"/><path d="M4 6v5c0 1.3 2.5 2.4 6 2.5"/><path d="M4 11v5c0 1.3 2.5 2.4 5.5 2.5"/><circle cx="18" cy="17" r="2.3"/></symbol><symbol id="i-cash-register" viewBox="0 0 24 24"><rect x="4" y="9" width="16" height="11" rx="1"/><path d="M6 9V6h8v3"/><line x1="8" y1="13" x2="16" y2="13"/></symbol><symbol id="i-refresh" viewBox="0 0 24 24"><path d="M4 12a8 8 0 0 1 14-5l2 2"/><path d="M20 5v4h-4"/><path d="M20 12a8 8 0 0 1-14 5l-2-2"/><path d="M4 19v-4h4"/></symbol><symbol id="i-gauge" viewBox="0 0 24 24"><path d="M4 16a8 8 0 1 1 16 0"/><path d="M12 16l4-4"/><circle cx="12" cy="16" r="1"/></symbol><symbol id="i-book" viewBox="0 0 24 24"><path d="M5 5a2 2 0 0 1 2-2h11v15H7a2 2 0 0 0-2 2z"/><line x1="9" y1="7" x2="15" y2="7"/></symbol><symbol id="i-trophy" viewBox="0 0 24 24"><path d="M8 4h8v4a4 4 0 0 1-8 0z"/><path d="M8 6H5v1a3 3 0 0 0 3 3M16 6h3v1a3 3 0 0 1-3 3"/><path d="M12 12v3M9 20h6M10 20l.5-3h3l.5 3"/></symbol><symbol id="i-mail" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></symbol><symbol id="i-chevron-right" viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></symbol></svg>
+<div class="frame">
+  <div class="util">
+    <div class="srch"><svg class="tio"><use href="#i-search"></use></svg> Search The Branch&hellip;</div>
+    <div class="ricons"><svg class="tio"><use href="#i-apps"></use></svg><svg class="tio"><use href="#i-bell"></use></svg><svg class="tio"><use href="#i-help-circle"></use></svg><span class="ava">JD</span></div>
+  </div>
+  <div class="nav">
+    <div class="brand"><div class="logo-tile"><img src="data:image/png;base64,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" alt="East Bay Regional Park District"></div><span class="brandname">The Branch &middot; IT</span></div>
+    <a class="on" data-s="home" onclick="go('home')"><svg class="tio"><use href="#i-home"></use></svg>Home</a>
+    <a data-s="staff" onclick="go('staff')"><svg class="tio"><use href="#i-users"></use></svg>Staff</a>
+    <a data-s="services" onclick="go('services')"><svg class="tio"><use href="#i-headset"></use></svg>Services</a>
+    <a data-s="projects" onclick="go('projects')"><svg class="tio"><use href="#i-folders"></use></svg>Projects</a>
+    <a data-s="operations" onclick="go('operations')"><svg class="tio"><use href="#i-server-cog"></use></svg>Operations</a>
+    <a data-s="processes" onclick="go('processes')"><svg class="tio"><use href="#i-route"></use></svg>Processes</a>
+  </div>
+  <div class="body">
     <div class="main">
-
       <div class="hero">
-        <div class="hero-bg"></div>
-        <svg class="hero-trees" viewBox="0 0 600 90" preserveAspectRatio="xMidYMax slice" aria-hidden="true">
-          <ellipse cx="80" cy="60" rx="55" ry="40" fill="#fff" opacity=".07"/>
-          <ellipse cx="200" cy="50" rx="70" ry="50" fill="#fff" opacity=".06"/>
-          <ellipse cx="350" cy="55" rx="60" ry="45" fill="#fff" opacity=".07"/>
-          <ellipse cx="500" cy="48" rx="75" ry="55" fill="#fff" opacity=".05"/>
-          <rect x="73" y="60" width="8" height="30" fill="#fff" opacity=".08"/>
-          <rect x="193" y="60" width="10" height="30" fill="#fff" opacity=".07"/>
-          <rect x="344" y="60" width="9" height="30" fill="#fff" opacity=".08"/>
-          <rect x="493" y="55" width="10" height="35" fill="#fff" opacity=".06"/>
-        </svg>
-        <div class="hero-text" id="hero-text">Hello, and welcome to IS on The Branch!</div>
+        <svg class="heroimg" viewBox="0 0 1120 200" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#cfe7cf"/><stop offset="0.6" stop-color="#bfe0c5"/><stop offset="1" stop-color="#d8eccf"/>
+    </linearGradient>
+    <radialGradient id="sun" cx="0.8" cy="0.1" r="0.5">
+      <stop offset="0" stop-color="#fbf6df" stop-opacity="0.9"/><stop offset="1" stop-color="#fbf6df" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="shade" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#143025" stop-opacity="0.82"/><stop offset="0.55" stop-color="#1c4332" stop-opacity="0.35"/><stop offset="1" stop-color="#1c4332" stop-opacity="0.05"/>
+    </linearGradient>
+  </defs>
+  <rect width="1120" height="200" fill="url(#sky)"/>
+  <rect width="1120" height="200" fill="url(#sun)"/>
+  <path d="M0,118 Q160,86 320,108 T620,104 Q800,96 980,118 T1120,116 L1120,200 L0,200 Z" fill="#a6cda8"/>
+  <path d="M0,138 Q200,108 430,134 Q560,150 700,128 Q880,102 1120,136 L1120,200 L0,200 Z" fill="#7eb585"/>
+  <path d="M0,162 Q180,140 360,158 Q520,174 690,150 Q900,120 1120,158 L1120,200 L0,200 Z" fill="#579165"/>
+  <g fill="#2f5d3f">
+    <path d="M150,168 l9,-22 9,22 z"/><path d="M168,170 l11,-27 11,27 z"/><path d="M190,169 l8,-20 8,20 z"/>
+    <path d="M250,172 l10,-24 10,24 z"/><path d="M268,171 l8,-19 8,19 z"/>
+    <path d="M900,166 l10,-25 10,25 z"/><path d="M918,168 l9,-22 9,22 z"/><path d="M936,167 l8,-20 8,20 z"/>
+    <path d="M980,170 l11,-26 11,26 z"/>
+  </g>
+  <path d="M0,184 Q220,166 470,182 Q640,194 820,176 Q980,160 1120,182 L1120,200 L0,200 Z" fill="#1f4a34"/>
+  <rect width="1120" height="200" fill="url(#shade)"/>
+</svg>
+        <div class="hl" id="hl">Welcome to Information Technology on The Branch</div>
+        <div class="hs" id="hs">Your hub for IT services, projects, and resources across the Park District.</div>
+        <div class="chips" id="chips">
+          <span class="chip"><svg class="tio"><use href="#i-ticket"></use></svg> Submit a request</span>
+          <span class="chip"><svg class="tio"><use href="#i-key"></use></svg> Reset password</span>
+          <span class="chip"><svg class="tio"><use href="#i-alert-circle"></use></svg> Report an incident</span>
+          <span class="chip"><svg class="tio"><use href="#i-apps"></use></svg> Find an app</span>
+        </div>
       </div>
+      <div class="wrap">
 
-      <div class="content">
-
-        <div class="spoke-bar">
-          <span style="font-size:12px;color:var(--muted);align-self:center;margin-right:4px;">Jump to:</span>
-          <button class="spoke-btn active" onclick="showSpoke('home')"><i class="ti ti-home" aria-hidden="true"></i> Home</button>
-          <button class="spoke-btn" onclick="showSpoke('services')"><i class="ti ti-headset" aria-hidden="true"></i> Services</button>
-          <button class="spoke-btn" onclick="showSpoke('projects')"><i class="ti ti-folders" aria-hidden="true"></i> Projects</button>
-          <button class="spoke-btn" onclick="showSpoke('operations')"><i class="ti ti-activity" aria-hidden="true"></i> Operations</button>
-          <button class="spoke-btn" onclick="showSpoke('processes')"><i class="ti ti-clipboard-list" aria-hidden="true"></i> Processes</button>
-          <button class="spoke-btn" onclick="showSpoke('staff')"><i class="ti ti-users" aria-hidden="true"></i> Staff</button>
-        </div>
-
-        <div id="spoke-home" class="spoke-content active">
-          <div class="section-title"><i class="ti ti-bolt" aria-hidden="true"></i> Quick access</div>
-          <div class="quick-cards">
-            <div class="qcard"><i class="ti ti-ticket" aria-hidden="true"></i><span class="qcard-label">Submit a service request</span></div>
-            <div class="qcard"><i class="ti ti-desktop" aria-hidden="true"></i><span class="qcard-label">Desktop support</span></div>
-            <div class="qcard"><i class="ti ti-apps" aria-hidden="true"></i><span class="qcard-label">Application access</span></div>
-            <div class="qcard"><i class="ti ti-shield-lock" aria-hidden="true"></i><span class="qcard-label">Access management</span></div>
-            <div class="qcard"><i class="ti ti-alert-circle" aria-hidden="true"></i><span class="qcard-label">Report an incident</span></div>
-            <div class="qcard"><i class="ti ti-file-text" aria-hidden="true"></i><span class="qcard-label">IS policies</span></div>
+        <div class="spk on" id="s-home">
+          <div class="stitle"><svg class="tio"><use href="#i-compass"></use></svg> Explore Information Technology</div>
+          <div class="cards">
+            <div class="card" onclick="go('staff')"><div class="cic"><svg class="tio"><use href="#i-users"></use></svg></div><h4>Staff</h4><p>Org chart, directory, profiles, and goals</p><svg class="tio go"><use href="#i-arrow-right"></use></svg></div>
+            <div class="card" onclick="go('services')"><div class="cic"><svg class="tio"><use href="#i-headset"></use></svg></div><h4>Services</h4><p>Service catalog and support pages</p><svg class="tio go"><use href="#i-arrow-right"></use></svg></div>
+            <div class="card" onclick="go('projects')"><div class="cic"><svg class="tio"><use href="#i-folders"></use></svg></div><h4>Projects</h4><p>Portfolio, PM methodology, project sites</p><svg class="tio go"><use href="#i-arrow-right"></use></svg></div>
+            <div class="card" onclick="go('operations')"><div class="cic"><svg class="tio"><use href="#i-server-cog"></use></svg></div><h4>Operations</h4><p>Dashboard, runbooks, and procedures</p><svg class="tio go"><use href="#i-arrow-right"></use></svg></div>
+            <div class="card" onclick="go('processes')"><div class="cic"><svg class="tio"><use href="#i-route"></use></svg></div><h4>Processes</h4><p>Policies, templates, achievements</p><svg class="tio go"><use href="#i-arrow-right"></use></svg></div>
           </div>
-          <div class="section-title"><i class="ti ti-building-community" aria-hidden="true"></i> IS site map</div>
-          <div class="service-list">
-            <div class="scard" onclick="showSpoke('services')"><i class="ti ti-headset" aria-hidden="true"></i><div class="scard-title">IS Services</div><div class="scard-desc">Service catalog, SLAs, and request links</div></div>
-            <div class="scard" onclick="showSpoke('projects')"><i class="ti ti-folders" aria-hidden="true"></i><div class="scard-title">IS Projects</div><div class="scard-desc">Project portfolio and PM methodology</div></div>
-            <div class="scard" onclick="showSpoke('operations')"><i class="ti ti-activity" aria-hidden="true"></i><div class="scard-title">IS Operations</div><div class="scard-desc">Runbooks, incidents, and change log</div></div>
-            <div class="scard" onclick="showSpoke('processes')"><i class="ti ti-clipboard-list" aria-hidden="true"></i><div class="scard-title">IS Processes</div><div class="scard-desc">Policies, procedures, and templates</div></div>
-            <div class="scard" onclick="showSpoke('staff')"><i class="ti ti-users" aria-hidden="true"></i><div class="scard-title">IS Staff</div><div class="scard-desc">Org chart, directory, and staff profiles</div></div>
+          <div class="stitle"><svg class="tio"><use href="#i-bolt"></use></svg> Quick access</div>
+          <div class="qtiles">
+            <div class="qt"><svg class="tio"><use href="#i-ticket"></use></svg><span>Service request</span></div>
+            <div class="qt"><svg class="tio"><use href="#i-desktop"></use></svg><span>Desktop support</span></div>
+            <div class="qt"><svg class="tio"><use href="#i-shield-lock"></use></svg><span>Access management</span></div>
+            <div class="qt"><svg class="tio"><use href="#i-file-text"></use></svg><span>IT policies</span></div>
           </div>
         </div>
 
-        <div id="spoke-services" class="spoke-content">
-          <div class="breadcrumb"><a onclick="showSpoke('home')">IS home</a> <i class="ti ti-chevron-right" style="font-size:10px;" aria-hidden="true"></i> Services</div>
-          <div class="section-title"><i class="ti ti-headset" aria-hidden="true"></i> Service catalog</div>
-          <div class="service-list">
-            <div class="scard"><i class="ti ti-desktop" aria-hidden="true"></i><div class="scard-title">Desktop support</div><div class="scard-desc">Hardware, software, and workstation issues</div></div>
-            <div class="scard"><i class="ti ti-shield-lock" aria-hidden="true"></i><div class="scard-title">Access management</div><div class="scard-desc">Accounts, permissions, and directory</div></div>
-            <div class="scard"><i class="ti ti-apps" aria-hidden="true"></i><div class="scard-title">Applications</div><div class="scard-desc">Enterprise apps, licensing, and installs</div></div>
-            <div class="scard"><i class="ti ti-server" aria-hidden="true"></i><div class="scard-title">Infrastructure</div><div class="scard-desc">Network, servers, and cloud services</div></div>
-            <div class="scard"><i class="ti ti-brand-office" aria-hidden="true"></i><div class="scard-title">MS365</div><div class="scard-desc">Teams, SharePoint, and Exchange support</div></div>
-            <div class="scard"><i class="ti ti-pen" aria-hidden="true"></i><div class="scard-title">AdobeSign</div><div class="scard-desc">Digital signatures and document routing</div></div>
+        <div class="spk" id="s-staff">
+          <div class="crumb"><a onclick="go('home')">IT home</a> <svg class="tio" style="font-size:9px;"><use href="#i-chevron-right"></use></svg> Staff</div>
+          <div class="shdr"><div class="ic"><svg class="tio"><use href="#i-users"></use></svg></div><div><h2>IT Staff</h2><p>Org structure &amp; performance</p></div></div>
+          <div class="stitle"><svg class="tio"><use href="#i-layout-grid"></use></svg> Pages &amp; libraries</div>
+          <div class="cards">
+            <div class="card"><div class="cic"><svg class="tio"><use href="#i-sitemap"></use></svg></div><h4>Org chart page</h4><p>Visio diagram linked to the staff directory</p></div>
+            <div class="card"><div class="cic"><svg class="tio"><use href="#i-address-book"></use></svg></div><h4>Staff directory library</h4><p>List of all IT staff &mdash; name, role, manager, contact</p></div>
+            <div class="card"><div class="cic"><svg class="tio"><use href="#i-id-badge-2"></use></svg></div><h4>Staff profile pages</h4><p>Dedicated page for each team member</p></div>
+            <div class="card"><div class="cic"><svg class="tio"><use href="#i-target-arrow"></use></svg></div><h4>Goals &amp; status list</h4><p>Quarterly goals and status linked to projects</p></div>
           </div>
-          <div class="section-title"><i class="ti ti-file-description" aria-hidden="true"></i> SLA library</div>
-          <div style="background:var(--white);border:0.5px solid var(--line);border-radius:10px;overflow:hidden;">
-            <table style="width:100%;font-size:13px;border-collapse:collapse;">
-              <thead><tr style="background:#F0F4F0;"><th style="padding:8px 12px;text-align:left;color:var(--slate);font-weight:600;">Service</th><th style="padding:8px 12px;text-align:left;color:var(--slate);font-weight:600;">Response</th><th style="padding:8px 12px;text-align:left;color:var(--slate);font-weight:600;">Resolution</th></tr></thead>
-              <tbody>
-                <tr style="border-top:0.5px solid var(--line);"><td style="padding:8px 12px;">Critical outage</td><td style="padding:8px 12px;color:var(--pine);font-weight:500;">15 min</td><td style="padding:8px 12px;">4 hrs</td></tr>
-                <tr style="border-top:0.5px solid var(--line);background:#FAFAF8;"><td style="padding:8px 12px;">Desktop support</td><td style="padding:8px 12px;color:var(--pine);font-weight:500;">2 hrs</td><td style="padding:8px 12px;">1 business day</td></tr>
-                <tr style="border-top:0.5px solid var(--line);"><td style="padding:8px 12px;">Access request</td><td style="padding:8px 12px;color:var(--pine);font-weight:500;">4 hrs</td><td style="padding:8px 12px;">2 business days</td></tr>
-              </tbody>
-            </table>
+          <div class="stitle"><svg class="tio"><use href="#i-users-group"></use></svg> Team directory</div>
+          <div class="dir">
+            <div class="person"><div class="av">JD</div><div class="pn">John D.</div><div class="pr">IT Bus. Systems</div></div>
+            <div class="person"><div class="av" style="background:#2D5A3D;">CT</div><div class="pn">Carlson T.</div><div class="pr">IT Manager</div></div>
+            <div class="person"><div class="av" style="background:#3B5E8A;">GW</div><div class="pn">Greta W.</div><div class="pr">IT Director</div></div>
+            <div class="person"><div class="av" style="background:#6B4E35;">JF</div><div class="pn">Jessica F.</div><div class="pr">Systems Analyst</div></div>
           </div>
         </div>
 
-        <div id="spoke-projects" class="spoke-content">
-          <div class="breadcrumb"><a onclick="showSpoke('home')">IS home</a> <i class="ti ti-chevron-right" style="font-size:10px;" aria-hidden="true"></i> Projects</div>
-          <div class="section-title"><i class="ti ti-folders" aria-hidden="true"></i> Project portfolio</div>
-          <div class="project-card"><i class="ti ti-brand-sharepoint" style="font-size:22px;color:var(--pine);flex:none;" aria-hidden="true"></i><div style="flex:1;min-width:0;"><div style="font-size:14px;font-weight:600;">The Branch &mdash; Phase II</div><div style="font-size:12px;color:var(--muted);margin-top:2px;">Hub-and-spoke governance rollout across all divisions</div></div><span class="proj-status proj-active">Active</span></div>
-          <div class="project-card"><i class="ti ti-database" style="font-size:22px;color:var(--pine);flex:none;" aria-hidden="true"></i><div style="flex:1;min-width:0;"><div style="font-size:14px;font-weight:600;">Workday Prism integration</div><div style="font-size:12px;color:var(--muted);margin-top:2px;">Historical data blending and reporting use cases</div></div><span class="proj-status proj-active">Active</span></div>
-          <div class="project-card"><i class="ti ti-cash-register" style="font-size:22px;color:var(--pine);flex:none;" aria-hidden="true"></i><div style="flex:1;min-width:0;"><div style="font-size:14px;font-weight:600;">Teller cashering modernization</div><div style="font-size:12px;color:var(--muted);margin-top:2px;">Weekly workshop series &mdash; in progress</div></div><span class="proj-status proj-active">Active</span></div>
-          <div class="project-card"><i class="ti ti-chart-bar" style="font-size:22px;color:var(--pine);flex:none;" aria-hidden="true"></i><div style="flex:1;min-width:0;"><div style="font-size:14px;font-weight:600;">Power BI reporting dashboard</div><div style="font-size:12px;color:var(--muted);margin-top:2px;">District-wide analytics and reporting layer</div></div><span class="proj-status proj-planned">Planned</span></div>
-          <div style="margin-top:14px;">
-            <div class="section-title"><i class="ti ti-checklist" aria-hidden="true"></i> PM methodology</div>
-            <div class="service-list">
-              <div class="scard"><i class="ti ti-map" aria-hidden="true"></i><div class="scard-title">Prioritization matrix</div><div class="scard-desc">How IS evaluates and ranks incoming work</div></div>
-              <div class="scard"><i class="ti ti-file-analytics" aria-hidden="true"></i><div class="scard-title">Project artifacts library</div><div class="scard-desc">Templates, charters, and status reports</div></div>
-              <div class="scard"><i class="ti ti-table" aria-hidden="true"></i><div class="scard-title">Project status on a page</div><div class="scard-desc">Live portfolio view for IS leadership</div></div>
-            </div>
+        <div class="spk" id="s-services">
+          <div class="crumb"><a onclick="go('home')">IT home</a> <svg class="tio" style="font-size:9px;"><use href="#i-chevron-right"></use></svg> Services</div>
+          <div class="shdr"><div class="ic"><svg class="tio"><use href="#i-headset"></use></svg></div><div><h2>IT Services</h2><p>Customer-facing &amp; documentation</p></div></div>
+          <div class="stitle"><svg class="tio"><use href="#i-layout-grid"></use></svg> Service catalog</div>
+          <div class="cards">
+            <div class="card"><div class="cic"><svg class="tio"><use href="#i-list-details"></use></svg></div><h4>Service catalog page</h4><p>Summary of all services with links to detail pages</p></div>
+            <div class="card"><div class="cic"><svg class="tio"><use href="#i-shield-lock"></use></svg></div><h4>Access management</h4><p>Provisioning, password resets, MFA, VPN access</p></div>
+            <div class="card"><div class="cic"><svg class="tio"><use href="#i-desktop"></use></svg></div><h4>Desktop support</h4><p>Hardware/software requests, troubleshooting, printers</p></div>
+            <div class="card"><div class="cic"><svg class="tio"><use href="#i-apps"></use></svg></div><h4>Applications hub</h4><p>Central Square, Reports, SharePoint, M365 Suite</p></div>
+            <div class="card"><div class="cic"><svg class="tio"><use href="#i-server"></use></svg></div><h4>Infrastructure hub</h4><p>Firewalls, Network &amp; WiFi, Site Monitoring</p></div>
+            <div class="card"><div class="cic"><svg class="tio"><use href="#i-file-certificate"></use></svg></div><h4>SLA library</h4><p>Service level agreements &mdash; internal &amp; vendor</p></div>
           </div>
         </div>
 
-        <div id="spoke-operations" class="spoke-content">
-          <div class="breadcrumb"><a onclick="showSpoke('home')">IS home</a> <i class="ti ti-chevron-right" style="font-size:10px;" aria-hidden="true"></i> Operations</div>
-          <div class="section-title"><i class="ti ti-activity" aria-hidden="true"></i> Operations dashboard</div>
-          <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:18px;">
-            <div style="background:var(--white);border:0.5px solid var(--line);border-radius:10px;padding:12px;text-align:center;"><div style="font-size:22px;font-weight:600;color:var(--pine);">2</div><div style="font-size:12px;color:var(--muted);">Open incidents</div></div>
-            <div style="background:var(--white);border:0.5px solid var(--line);border-radius:10px;padding:12px;text-align:center;"><div style="font-size:22px;font-weight:600;color:var(--pine);">14</div><div style="font-size:12px;color:var(--muted);">Changes this month</div></div>
-            <div style="background:var(--white);border:0.5px solid var(--line);border-radius:10px;padding:12px;text-align:center;"><div style="font-size:22px;font-weight:600;color:#166534;">99.2%</div><div style="font-size:12px;color:var(--muted);">Uptime (30 days)</div></div>
+        <div class="spk" id="s-projects">
+          <div class="crumb"><a onclick="go('home')">IT home</a> <svg class="tio" style="font-size:9px;"><use href="#i-chevron-right"></use></svg> Projects</div>
+          <div class="shdr"><div class="ic"><svg class="tio"><use href="#i-folders"></use></svg></div><div><h2>IT Projects</h2><p>Project Management Office (PMO)</p></div></div>
+          <div class="stitle"><svg class="tio"><use href="#i-layout-grid"></use></svg> Methodology &amp; standards</div>
+          <div class="cards">
+            <div class="card"><div class="cic"><svg class="tio"><use href="#i-route-2"></use></svg></div><h4>PM methodology</h4><p>IT lifecycle &mdash; initiation, planning, execution, closure</p></div>
+            <div class="card"><div class="cic"><svg class="tio"><use href="#i-table"></use></svg></div><h4>Prioritization matrix</h4><p>Scoring model &mdash; benefit vs. feasibility/risk</p></div>
+            <div class="card"><div class="cic"><svg class="tio"><use href="#i-file-analytics"></use></svg></div><h4>Project artifacts library</h4><p>Requirements, testing plans, sign-offs, comms logs</p></div>
+            <div class="card"><div class="cic"><svg class="tio"><use href="#i-report"></use></svg></div><h4>Status on a page (SOAP)</h4><p>Status, scope, budget, and schedule per project</p></div>
           </div>
-          <div class="section-title"><i class="ti ti-book" aria-hidden="true"></i> Runbooks and procedures</div>
-          <div class="service-list">
-            <div class="scard"><i class="ti ti-wifi-off" aria-hidden="true"></i><div class="scard-title">Network outage response</div><div class="scard-desc">Steps for diagnosing and escalating connectivity issues</div></div>
-            <div class="scard"><i class="ti ti-server-off" aria-hidden="true"></i><div class="scard-title">Server maintenance</div><div class="scard-desc">Scheduled maintenance windows and rollback steps</div></div>
-            <div class="scard"><i class="ti ti-lock-open" aria-hidden="true"></i><div class="scard-title">Security incident response</div><div class="scard-desc">Containment, escalation, and notification procedures</div></div>
-          </div>
-        </div>
-
-        <div id="spoke-processes" class="spoke-content">
-          <div class="breadcrumb"><a onclick="showSpoke('home')">IS home</a> <i class="ti ti-chevron-right" style="font-size:10px;" aria-hidden="true"></i> Processes</div>
-          <div class="section-title"><i class="ti ti-clipboard-list" aria-hidden="true"></i> Policies and procedures</div>
-          <div class="service-list">
-            <div class="scard"><i class="ti ti-shield" aria-hidden="true"></i><div class="scard-title">Acceptable use policy</div><div class="scard-desc">District technology usage guidelines</div></div>
-            <div class="scard"><i class="ti ti-key" aria-hidden="true"></i><div class="scard-title">Password and access policy</div><div class="scard-desc">Credential standards and MFA requirements</div></div>
-            <div class="scard"><i class="ti ti-cloud" aria-hidden="true"></i><div class="scard-title">Cloud governance policy</div><div class="scard-desc">Approved platforms and data classification rules</div></div>
-            <div class="scard"><i class="ti ti-refresh" aria-hidden="true"></i><div class="scard-title">Change management process</div><div class="scard-desc">How IS reviews and approves system changes</div></div>
-          </div>
-          <div class="section-title"><i class="ti ti-template" aria-hidden="true"></i> Templates library</div>
-          <div class="service-list">
-            <div class="scard"><i class="ti ti-file-plus" aria-hidden="true"></i><div class="scard-title">Project charter template</div><div class="scard-desc">Standard charter for new IS projects</div></div>
-            <div class="scard"><i class="ti ti-report" aria-hidden="true"></i><div class="scard-title">Status report template</div><div class="scard-desc">Weekly project status one-pager</div></div>
+          <div class="stitle"><svg class="tio"><use href="#i-folder"></use></svg> Project sites</div>
+          <div class="plist">
+            <div class="prow"><svg class="tio"><use href="#i-brand-sharepoint"></use></svg><div class="pinfo"><div class="t">The Branch &mdash; Phase II</div><div class="d">Hub-and-spoke governance rollout</div></div><span class="badge ba">Active</span></div>
+            <div class="prow"><svg class="tio"><use href="#i-database"></use></svg><div class="pinfo"><div class="t">Workday Prism integration</div><div class="d">Historical data blending &amp; reporting</div></div><span class="badge ba">Active</span></div>
+            <div class="prow"><svg class="tio"><use href="#i-cash-register"></use></svg><div class="pinfo"><div class="t">Teller cashering modernization</div><div class="d">Weekly workshop series</div></div><span class="badge ba">Active</span></div>
+            <div class="prow"><svg class="tio"><use href="#i-refresh"></use></svg><div class="pinfo"><div class="t">ERP / Central Square upgrade</div><div class="d">Finance &amp; HRIS platform upgrade</div></div><span class="badge bp">Planned</span></div>
           </div>
         </div>
 
-        <div id="spoke-staff" class="spoke-content">
-          <div class="breadcrumb"><a onclick="showSpoke('home')">IS home</a> <i class="ti ti-chevron-right" style="font-size:10px;" aria-hidden="true"></i> Staff</div>
-          <div class="section-title"><i class="ti ti-users" aria-hidden="true"></i> IS team directory</div>
-          <div class="staff-grid">
-            <div class="staff-card"><div class="staff-av">JD</div><div class="staff-name">John D.</div><div class="staff-role">IT Business Systems</div></div>
-            <div class="staff-card"><div class="staff-av" style="background:#2D5A3D;">CT</div><div class="staff-name">Carlson T.</div><div class="staff-role">IS Manager</div></div>
-            <div class="staff-card"><div class="staff-av" style="background:#3B5E8A;">GW</div><div class="staff-name">Greta W.</div><div class="staff-role">IS Director</div></div>
-            <div class="staff-card"><div class="staff-av" style="background:#6B4E35;">JF</div><div class="staff-name">Jessica F.</div><div class="staff-role">Systems Analyst</div></div>
+        <div class="spk" id="s-operations">
+          <div class="crumb"><a onclick="go('home')">IT home</a> <svg class="tio" style="font-size:9px;"><use href="#i-chevron-right"></use></svg> Operations</div>
+          <div class="shdr"><div class="ic"><svg class="tio"><use href="#i-server-cog"></use></svg></div><div><h2>IT Operations</h2><p>Monitoring, runbooks &amp; incidents</p></div></div>
+          <div class="stitle"><svg class="tio"><use href="#i-gauge"></use></svg> Operations dashboard</div>
+          <div class="metrics">
+            <div class="metric"><div class="v">38ms</div><div class="l">Network latency</div><div class="t up"><svg class="tio"><use href="#i-arrow-down-right"></use></svg> 6% lower</div></div>
+            <div class="metric"><div class="v">99.2%</div><div class="l">Critical app uptime</div><div class="t up"><svg class="tio"><use href="#i-arrow-up-right"></use></svg> on target</div></div>
+            <div class="metric"><div class="v">41</div><div class="l">SAManage tickets</div><div class="t dn"><svg class="tio"><use href="#i-arrow-up-right"></use></svg> 9% higher</div></div>
           </div>
-          <div style="margin-top:16px;" class="section-title"><i class="ti ti-sitemap" aria-hidden="true"></i> Org chart</div>
-          <div style="background:var(--white);border:0.5px solid var(--line);border-radius:10px;padding:14px;font-size:13px;">
-            <div style="display:flex;flex-direction:column;align-items:center;gap:8px;">
-              <div style="background:var(--pine);color:#fff;padding:6px 18px;border-radius:6px;font-weight:500;">IS Director</div>
-              <div style="width:0.5px;height:16px;background:var(--line);"></div>
-              <div style="display:flex;gap:24px;align-items:flex-start;">
-                <div style="display:flex;flex-direction:column;align-items:center;gap:6px;"><div style="background:#2D5A3D;color:#fff;padding:5px 14px;border-radius:6px;font-size:12px;">IS Manager</div><div style="width:0.5px;height:12px;background:var(--line);"></div><div style="display:flex;gap:8px;"><div style="background:#F0F4F0;color:var(--pine);border:0.5px solid var(--line);padding:4px 10px;border-radius:6px;font-size:11px;">IT Bus. Systems</div><div style="background:#F0F4F0;color:var(--pine);border:0.5px solid var(--line);padding:4px 10px;border-radius:6px;font-size:11px;">Sys. Analyst</div></div></div>
-              </div>
-            </div>
+          <div class="stitle"><svg class="tio"><use href="#i-book"></use></svg> Runbooks &amp; procedures</div>
+          <div class="cards">
+            <div class="card"><div class="cic"><svg class="tio"><use href="#i-server"></use></svg></div><h4>Server patching runbook</h4><p>Step-by-step maintenance and rollback</p></div>
+            <div class="card"><div class="cic"><svg class="tio"><use href="#i-database-cog"></use></svg></div><h4>Central Square backup</h4><p>Backup and restore procedure</p></div>
+            <div class="card"><div class="cic"><svg class="tio"><use href="#i-shield-bolt"></use></svg></div><h4>Security incident response</h4><p>Containment, escalation, notification</p></div>
+          </div>
+        </div>
+
+        <div class="spk" id="s-processes">
+          <div class="crumb"><a onclick="go('home')">IT home</a> <svg class="tio" style="font-size:9px;"><use href="#i-chevron-right"></use></svg> Processes</div>
+          <div class="shdr"><div class="ic"><svg class="tio"><use href="#i-route"></use></svg></div><div><h2>IT Processes</h2><p>Policies, procedures &amp; standards</p></div></div>
+          <div class="stitle"><svg class="tio"><use href="#i-layout-grid"></use></svg> Policies &amp; templates</div>
+          <div class="cards">
+            <div class="card"><div class="cic"><svg class="tio"><use href="#i-shield"></use></svg></div><h4>Acceptable use policy</h4><p>District technology usage guidelines</p></div>
+            <div class="card"><div class="cic"><svg class="tio"><use href="#i-key"></use></svg></div><h4>Password &amp; access policy</h4><p>Credential standards and MFA requirements</p></div>
+            <div class="card"><div class="cic"><svg class="tio"><use href="#i-refresh"></use></svg></div><h4>Change management</h4><p>How IT reviews and approves changes</p></div>
+            <div class="card"><div class="cic"><svg class="tio"><use href="#i-template"></use></svg></div><h4>Templates library</h4><p>Charters, status reports, request forms</p></div>
+          </div>
+          <div class="stitle"><svg class="tio"><use href="#i-trophy"></use></svg> Achievements &amp; metrics</div>
+          <div class="metrics">
+            <div class="metric"><div class="v">128</div><div class="l">Tickets closed (mo.)</div></div>
+            <div class="metric"><div class="v">12</div><div class="l">Projects delivered (yr.)</div></div>
+            <div class="metric"><div class="v">4.6</div><div class="l">Avg. satisfaction</div></div>
           </div>
         </div>
 
       </div>
     </div>
-
-    <aside class="sidebar">
-      <div class="sidebar-section">
-        <div class="sidebar-title">What's happening</div>
-        <div class="news-item"><div class="news-label">Phase II governance kickoff — July 6</div><div class="news-date">Posted Jun 25</div></div>
-        <div class="news-item"><div class="news-label">Workday Prism use case review</div><div class="news-date">Posted Jun 20</div></div>
-        <div class="news-item"><div class="news-label">Teller cashering workshop #3</div><div class="news-date">Posted Jun 18</div></div>
-        <div class="news-item"><div class="news-label">MS365 Copilot pilot update</div><div class="news-date">Posted Jun 10</div></div>
+    <aside class="side">
+      <div class="ss"><h5>What's happening</h5>
+        <div class="ni"><div class="t">Phase II governance kickoff</div><div class="dt">July 6</div></div>
+        <div class="ni"><div class="t">Prism use-case review</div><div class="dt">Jun 20</div></div>
+        <div class="ni"><div class="t">Teller workshop #3</div><div class="dt">Jun 18</div></div>
       </div>
-      <div class="sidebar-section">
-        <div class="sidebar-title">IS contacts</div>
-        <div style="font-size:13px;color:var(--slate);line-height:1.8;">
-          <div><i class="ti ti-ticket" style="font-size:13px;margin-right:5px;color:var(--pine);" aria-hidden="true"></i>Help desk ext. 2000</div>
-          <div><i class="ti ti-mail" style="font-size:13px;margin-right:5px;color:var(--pine);" aria-hidden="true"></i>is-help@ebrpd.org</div>
-          <div><i class="ti ti-alert-triangle" style="font-size:13px;margin-right:5px;color:var(--pine);" aria-hidden="true"></i>Urgent: ext. 2001</div>
-        </div>
-      </div>
-      <div class="sidebar-section">
-        <div class="sidebar-title">Meet IS divisions</div>
-        <div class="div-item"><div class="div-name"><i class="ti ti-headset" style="font-size:14px;" aria-hidden="true"></i> Services</div><div class="div-sub">Catalog, SLAs, requests</div></div>
-        <div class="div-item"><div class="div-name"><i class="ti ti-folders" style="font-size:14px;" aria-hidden="true"></i> Projects</div><div class="div-sub">Portfolio and PM</div></div>
-        <div class="div-item"><div class="div-name"><i class="ti ti-activity" style="font-size:14px;" aria-hidden="true"></i> Operations</div><div class="div-sub">Runbooks and incidents</div></div>
-        <div class="div-item"><div class="div-name"><i class="ti ti-clipboard-list" style="font-size:14px;" aria-hidden="true"></i> Processes</div><div class="div-sub">Policies and templates</div></div>
-        <div class="div-item"><div class="div-name"><i class="ti ti-users" style="font-size:14px;" aria-hidden="true"></i> Staff</div><div class="div-sub">Directory and org chart</div></div>
+      <div class="ss"><h5>IT contacts</h5>
+        <div class="contacts"><div><svg class="tio"><use href="#i-ticket"></use></svg>Help desk ext. 2000</div><div><svg class="tio"><use href="#i-mail"></use></svg>it-help@ebrpd.org</div><div><svg class="tio"><use href="#i-alert-triangle"></use></svg>Urgent ext. 2001</div></div>
       </div>
     </aside>
   </div>
+  <div class="foot">Draft prototype &middot; EBRPD Information Technology &middot; The Branch &middot; Phase II</div>
 </div>
-
 <script>
-const HEROES={home:"Hello, and welcome to IS on The Branch!",services:"IS Services — service catalog and support",projects:"IS Projects — portfolio and PM methodology",operations:"IS Operations — runbooks and incident management",processes:"IS Processes — policies, procedures, and templates",staff:"IS Staff — team directory and org chart"};
-function showSpoke(id){
-  document.querySelectorAll('.spoke-content').forEach(el=>el.classList.remove('active'));
-  document.querySelectorAll('.spoke-btn').forEach(el=>el.classList.remove('active'));
-  document.querySelectorAll('.nav-link').forEach(el=>el.classList.remove('active'));
-  document.getElementById('spoke-'+id).classList.add('active');
-  document.getElementById('hero-text').textContent=HEROES[id]||HEROES.home;
-  document.querySelectorAll('.spoke-btn').forEach(b=>{if(b.textContent.trim().toLowerCase().includes(id)||( id==='home'&&b.textContent.includes('Home')))b.classList.add('active');});
-  document.querySelectorAll('.nav-link').forEach(a=>{if(a.getAttribute('onclick')&&a.getAttribute('onclick').includes(id))a.classList.add('active');});
+const D={home:["Welcome to Information Technology on The Branch","Your hub for IT services, projects, and resources across the Park District.",1],staff:["IT Staff","Org structure, directory, and team performance.",0],services:["IT Services","The service catalog and everything IT delivers to the District.",0],projects:["IT Projects","Project portfolio, methodology, and active project sites.",0],operations:["IT Operations","System monitoring, runbooks, and incident management.",0],processes:["IT Processes","Policies, procedures, templates, and team achievements.",0]};
+function go(id){
+  document.querySelectorAll('.spk').forEach(e=>e.classList.remove('on'));
+  document.querySelectorAll('.nav a').forEach(e=>e.classList.remove('on'));
+  document.getElementById('s-'+id).classList.add('on');
+  document.querySelectorAll('.nav a[data-s="'+id+'"]').forEach(e=>e.classList.add('on'));
+  document.getElementById('hl').textContent=D[id][0];
+  document.getElementById('hs').textContent=D[id][1];
+  document.getElementById('chips').style.display=D[id][2]?'flex':'none';
+  window.scrollTo({top:0,behavior:'smooth'});
 }
 </script>
+</body>
+</html>
