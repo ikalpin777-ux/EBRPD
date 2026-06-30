@@ -1,0 +1,275 @@
+
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+:root{--pine:#1C4332;--pine-mid:#2D5A3D;--pine-light:#3B7A52;--gold:#C9A227;--paper:#F7F5F0;--white:#fff;--ink:#1A1F1C;--slate:#4A5249;--muted:#7A807A;--line:#DDD;--sans:"Segoe UI",system-ui,sans-serif;}
+body{font-family:var(--sans);background:var(--paper);color:var(--ink);}
+.topbar{background:var(--pine);color:#fff;padding:4px 16px;font-size:11px;letter-spacing:.3px;}
+.navbar{background:var(--pine);display:flex;align-items:center;gap:0;padding:0 16px;border-bottom:3px solid var(--gold);}
+.brand{display:flex;align-items:center;gap:10px;padding:10px 0;margin-right:24px;}
+.logo-circle{width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,.18);display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700;color:#fff;flex:none;}
+.brand-name{color:#fff;font-size:17px;font-weight:600;letter-spacing:.2px;}
+.nav-links{display:flex;align-items:stretch;gap:0;flex:1;}
+.nav-link{color:rgba(255,255,255,.85);font-size:13.5px;padding:0 14px;height:56px;display:flex;align-items:center;gap:5px;cursor:pointer;border-bottom:3px solid transparent;transition:background .1s;text-decoration:none;}
+.nav-link:hover{background:rgba(255,255,255,.1);}
+.nav-link.active{color:#fff;border-bottom-color:var(--gold);font-weight:500;}
+.nav-link .chevron{font-size:10px;opacity:.7;}
+.page{display:grid;grid-template-columns:1fr 220px;gap:0;max-width:100%;}
+.main{min-width:0;}
+.hero{background:var(--pine-mid);height:130px;display:flex;align-items:flex-end;padding:16px 20px;position:relative;overflow:hidden;}
+.hero-bg{position:absolute;inset:0;background:linear-gradient(135deg,#1C4332 0%,#2D5A3D 50%,#1C4332 100%);opacity:.9;}
+.hero-trees{position:absolute;bottom:0;left:0;right:0;height:90px;opacity:.18;}
+.hero-text{position:relative;color:#fff;font-size:18px;font-weight:500;letter-spacing:.2px;}
+.content{padding:18px 20px;}
+.spoke-bar{display:flex;gap:8px;margin-bottom:18px;flex-wrap:wrap;}
+.spoke-btn{background:var(--pine);color:#fff;border:none;padding:7px 14px;border-radius:6px;font-size:13px;cursor:pointer;font-family:var(--sans);font-weight:500;transition:background .12s;display:flex;align-items:center;gap:6px;}
+.spoke-btn:hover{background:var(--pine-light);}
+.spoke-btn.active{background:var(--gold);color:#2A1E04;}
+.section-title{font-size:15px;font-weight:600;color:var(--ink);margin-bottom:12px;padding-bottom:6px;border-bottom:2px solid var(--pine);display:flex;align-items:center;gap:8px;}
+.section-title i{color:var(--pine);font-size:16px;}
+.quick-cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:8px;margin-bottom:20px;}
+.qcard{background:var(--pine);color:#fff;border-radius:8px;padding:11px 13px;cursor:pointer;transition:background .12s;display:flex;align-items:center;gap:10px;}
+.qcard:hover{background:var(--pine-light);}
+.qcard i{font-size:18px;opacity:.9;flex:none;}
+.qcard-label{font-size:13px;font-weight:500;line-height:1.3;}
+.service-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:10px;margin-bottom:20px;}
+.scard{background:var(--white);border:0.5px solid var(--line);border-radius:10px;padding:12px 14px;cursor:pointer;transition:border-color .12s;}
+.scard:hover{border-color:var(--pine);}
+.scard i{font-size:18px;color:var(--pine);margin-bottom:6px;}
+.scard-title{font-size:13.5px;font-weight:600;color:var(--ink);margin-bottom:3px;}
+.scard-desc{font-size:12px;color:var(--muted);line-height:1.45;}
+.sidebar{background:var(--white);border-left:0.5px solid var(--line);padding:16px 14px;}
+.sidebar-section{margin-bottom:20px;}
+.sidebar-title{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;color:var(--slate);margin-bottom:10px;}
+.news-item{padding:8px 0;border-bottom:0.5px solid var(--line);cursor:pointer;}
+.news-item:last-child{border-bottom:none;}
+.news-label{font-size:13px;color:var(--pine);font-weight:500;line-height:1.35;}
+.news-label:hover{text-decoration:underline;}
+.news-date{font-size:11px;color:var(--muted);margin-top:2px;}
+.div-item{padding:7px 0;border-bottom:0.5px solid var(--line);cursor:pointer;}
+.div-item:last-child{border-bottom:none;}
+.div-name{font-size:13px;font-weight:500;color:var(--pine);display:flex;align-items:center;gap:6px;}
+.div-name:hover{text-decoration:underline;}
+.div-sub{font-size:11px;color:var(--muted);margin-top:1px;padding-left:20px;}
+.spoke-content{display:none;}
+.spoke-content.active{display:block;}
+.breadcrumb{font-size:12px;color:var(--muted);margin-bottom:12px;display:flex;align-items:center;gap:6px;}
+.breadcrumb a{color:var(--pine);text-decoration:none;}
+.breadcrumb a:hover{text-decoration:underline;}
+.project-card{background:var(--white);border:0.5px solid var(--line);border-radius:10px;padding:12px 14px;margin-bottom:8px;display:flex;align-items:center;gap:12px;cursor:pointer;}
+.project-card:hover{border-color:var(--pine);}
+.proj-status{font-size:11px;padding:3px 8px;border-radius:20px;font-weight:600;white-space:nowrap;}
+.proj-active{background:#E4EFE7;color:#1C4332;}
+.proj-planned{background:#FEF3C7;color:#78350F;}
+.staff-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:10px;}
+.staff-card{background:var(--white);border:0.5px solid var(--line);border-radius:10px;padding:12px;text-align:center;}
+.staff-av{width:44px;height:44px;border-radius:50%;background:var(--pine);color:#fff;font-size:14px;font-weight:600;display:flex;align-items:center;justify-content:center;margin:0 auto 8px;}
+.staff-name{font-size:13px;font-weight:600;color:var(--ink);}
+.staff-role{font-size:11px;color:var(--muted);margin-top:2px;}
+</style>
+
+<div style="background:var(--paper);border:0.5px solid var(--line);border-radius:12px;overflow:hidden;font-family:var(--sans);">
+
+  <div class="topbar">East Bay Regional Park District Intranet &mdash; Information Services</div>
+
+  <nav class="navbar">
+    <div class="brand">
+      <div class="logo-circle" aria-hidden="true"><i class="ti ti-tree" style="font-size:16px;"></i></div>
+      <span class="brand-name">The Branch &mdash; IS</span>
+    </div>
+    <div class="nav-links">
+      <a class="nav-link active" onclick="showSpoke('home')">Home</a>
+      <a class="nav-link" onclick="showSpoke('services')">Services <span class="chevron">&#9660;</span></a>
+      <a class="nav-link" onclick="showSpoke('projects')">Projects</a>
+      <a class="nav-link" onclick="showSpoke('operations')">Operations</a>
+      <a class="nav-link" onclick="showSpoke('processes')">Processes</a>
+      <a class="nav-link" onclick="showSpoke('staff')">Staff</a>
+    </div>
+  </nav>
+
+  <div class="page">
+    <div class="main">
+
+      <div class="hero">
+        <div class="hero-bg"></div>
+        <svg class="hero-trees" viewBox="0 0 600 90" preserveAspectRatio="xMidYMax slice" aria-hidden="true">
+          <ellipse cx="80" cy="60" rx="55" ry="40" fill="#fff" opacity=".07"/>
+          <ellipse cx="200" cy="50" rx="70" ry="50" fill="#fff" opacity=".06"/>
+          <ellipse cx="350" cy="55" rx="60" ry="45" fill="#fff" opacity=".07"/>
+          <ellipse cx="500" cy="48" rx="75" ry="55" fill="#fff" opacity=".05"/>
+          <rect x="73" y="60" width="8" height="30" fill="#fff" opacity=".08"/>
+          <rect x="193" y="60" width="10" height="30" fill="#fff" opacity=".07"/>
+          <rect x="344" y="60" width="9" height="30" fill="#fff" opacity=".08"/>
+          <rect x="493" y="55" width="10" height="35" fill="#fff" opacity=".06"/>
+        </svg>
+        <div class="hero-text" id="hero-text">Hello, and welcome to IS on The Branch!</div>
+      </div>
+
+      <div class="content">
+
+        <div class="spoke-bar">
+          <span style="font-size:12px;color:var(--muted);align-self:center;margin-right:4px;">Jump to:</span>
+          <button class="spoke-btn active" onclick="showSpoke('home')"><i class="ti ti-home" aria-hidden="true"></i> Home</button>
+          <button class="spoke-btn" onclick="showSpoke('services')"><i class="ti ti-headset" aria-hidden="true"></i> Services</button>
+          <button class="spoke-btn" onclick="showSpoke('projects')"><i class="ti ti-folders" aria-hidden="true"></i> Projects</button>
+          <button class="spoke-btn" onclick="showSpoke('operations')"><i class="ti ti-activity" aria-hidden="true"></i> Operations</button>
+          <button class="spoke-btn" onclick="showSpoke('processes')"><i class="ti ti-clipboard-list" aria-hidden="true"></i> Processes</button>
+          <button class="spoke-btn" onclick="showSpoke('staff')"><i class="ti ti-users" aria-hidden="true"></i> Staff</button>
+        </div>
+
+        <div id="spoke-home" class="spoke-content active">
+          <div class="section-title"><i class="ti ti-bolt" aria-hidden="true"></i> Quick access</div>
+          <div class="quick-cards">
+            <div class="qcard"><i class="ti ti-ticket" aria-hidden="true"></i><span class="qcard-label">Submit a service request</span></div>
+            <div class="qcard"><i class="ti ti-desktop" aria-hidden="true"></i><span class="qcard-label">Desktop support</span></div>
+            <div class="qcard"><i class="ti ti-apps" aria-hidden="true"></i><span class="qcard-label">Application access</span></div>
+            <div class="qcard"><i class="ti ti-shield-lock" aria-hidden="true"></i><span class="qcard-label">Access management</span></div>
+            <div class="qcard"><i class="ti ti-alert-circle" aria-hidden="true"></i><span class="qcard-label">Report an incident</span></div>
+            <div class="qcard"><i class="ti ti-file-text" aria-hidden="true"></i><span class="qcard-label">IS policies</span></div>
+          </div>
+          <div class="section-title"><i class="ti ti-building-community" aria-hidden="true"></i> IS site map</div>
+          <div class="service-list">
+            <div class="scard" onclick="showSpoke('services')"><i class="ti ti-headset" aria-hidden="true"></i><div class="scard-title">IS Services</div><div class="scard-desc">Service catalog, SLAs, and request links</div></div>
+            <div class="scard" onclick="showSpoke('projects')"><i class="ti ti-folders" aria-hidden="true"></i><div class="scard-title">IS Projects</div><div class="scard-desc">Project portfolio and PM methodology</div></div>
+            <div class="scard" onclick="showSpoke('operations')"><i class="ti ti-activity" aria-hidden="true"></i><div class="scard-title">IS Operations</div><div class="scard-desc">Runbooks, incidents, and change log</div></div>
+            <div class="scard" onclick="showSpoke('processes')"><i class="ti ti-clipboard-list" aria-hidden="true"></i><div class="scard-title">IS Processes</div><div class="scard-desc">Policies, procedures, and templates</div></div>
+            <div class="scard" onclick="showSpoke('staff')"><i class="ti ti-users" aria-hidden="true"></i><div class="scard-title">IS Staff</div><div class="scard-desc">Org chart, directory, and staff profiles</div></div>
+          </div>
+        </div>
+
+        <div id="spoke-services" class="spoke-content">
+          <div class="breadcrumb"><a onclick="showSpoke('home')">IS home</a> <i class="ti ti-chevron-right" style="font-size:10px;" aria-hidden="true"></i> Services</div>
+          <div class="section-title"><i class="ti ti-headset" aria-hidden="true"></i> Service catalog</div>
+          <div class="service-list">
+            <div class="scard"><i class="ti ti-desktop" aria-hidden="true"></i><div class="scard-title">Desktop support</div><div class="scard-desc">Hardware, software, and workstation issues</div></div>
+            <div class="scard"><i class="ti ti-shield-lock" aria-hidden="true"></i><div class="scard-title">Access management</div><div class="scard-desc">Accounts, permissions, and directory</div></div>
+            <div class="scard"><i class="ti ti-apps" aria-hidden="true"></i><div class="scard-title">Applications</div><div class="scard-desc">Enterprise apps, licensing, and installs</div></div>
+            <div class="scard"><i class="ti ti-server" aria-hidden="true"></i><div class="scard-title">Infrastructure</div><div class="scard-desc">Network, servers, and cloud services</div></div>
+            <div class="scard"><i class="ti ti-brand-office" aria-hidden="true"></i><div class="scard-title">MS365</div><div class="scard-desc">Teams, SharePoint, and Exchange support</div></div>
+            <div class="scard"><i class="ti ti-pen" aria-hidden="true"></i><div class="scard-title">AdobeSign</div><div class="scard-desc">Digital signatures and document routing</div></div>
+          </div>
+          <div class="section-title"><i class="ti ti-file-description" aria-hidden="true"></i> SLA library</div>
+          <div style="background:var(--white);border:0.5px solid var(--line);border-radius:10px;overflow:hidden;">
+            <table style="width:100%;font-size:13px;border-collapse:collapse;">
+              <thead><tr style="background:#F0F4F0;"><th style="padding:8px 12px;text-align:left;color:var(--slate);font-weight:600;">Service</th><th style="padding:8px 12px;text-align:left;color:var(--slate);font-weight:600;">Response</th><th style="padding:8px 12px;text-align:left;color:var(--slate);font-weight:600;">Resolution</th></tr></thead>
+              <tbody>
+                <tr style="border-top:0.5px solid var(--line);"><td style="padding:8px 12px;">Critical outage</td><td style="padding:8px 12px;color:var(--pine);font-weight:500;">15 min</td><td style="padding:8px 12px;">4 hrs</td></tr>
+                <tr style="border-top:0.5px solid var(--line);background:#FAFAF8;"><td style="padding:8px 12px;">Desktop support</td><td style="padding:8px 12px;color:var(--pine);font-weight:500;">2 hrs</td><td style="padding:8px 12px;">1 business day</td></tr>
+                <tr style="border-top:0.5px solid var(--line);"><td style="padding:8px 12px;">Access request</td><td style="padding:8px 12px;color:var(--pine);font-weight:500;">4 hrs</td><td style="padding:8px 12px;">2 business days</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div id="spoke-projects" class="spoke-content">
+          <div class="breadcrumb"><a onclick="showSpoke('home')">IS home</a> <i class="ti ti-chevron-right" style="font-size:10px;" aria-hidden="true"></i> Projects</div>
+          <div class="section-title"><i class="ti ti-folders" aria-hidden="true"></i> Project portfolio</div>
+          <div class="project-card"><i class="ti ti-brand-sharepoint" style="font-size:22px;color:var(--pine);flex:none;" aria-hidden="true"></i><div style="flex:1;min-width:0;"><div style="font-size:14px;font-weight:600;">The Branch &mdash; Phase II</div><div style="font-size:12px;color:var(--muted);margin-top:2px;">Hub-and-spoke governance rollout across all divisions</div></div><span class="proj-status proj-active">Active</span></div>
+          <div class="project-card"><i class="ti ti-database" style="font-size:22px;color:var(--pine);flex:none;" aria-hidden="true"></i><div style="flex:1;min-width:0;"><div style="font-size:14px;font-weight:600;">Workday Prism integration</div><div style="font-size:12px;color:var(--muted);margin-top:2px;">Historical data blending and reporting use cases</div></div><span class="proj-status proj-active">Active</span></div>
+          <div class="project-card"><i class="ti ti-cash-register" style="font-size:22px;color:var(--pine);flex:none;" aria-hidden="true"></i><div style="flex:1;min-width:0;"><div style="font-size:14px;font-weight:600;">Teller cashering modernization</div><div style="font-size:12px;color:var(--muted);margin-top:2px;">Weekly workshop series &mdash; in progress</div></div><span class="proj-status proj-active">Active</span></div>
+          <div class="project-card"><i class="ti ti-chart-bar" style="font-size:22px;color:var(--pine);flex:none;" aria-hidden="true"></i><div style="flex:1;min-width:0;"><div style="font-size:14px;font-weight:600;">Power BI reporting dashboard</div><div style="font-size:12px;color:var(--muted);margin-top:2px;">District-wide analytics and reporting layer</div></div><span class="proj-status proj-planned">Planned</span></div>
+          <div style="margin-top:14px;">
+            <div class="section-title"><i class="ti ti-checklist" aria-hidden="true"></i> PM methodology</div>
+            <div class="service-list">
+              <div class="scard"><i class="ti ti-map" aria-hidden="true"></i><div class="scard-title">Prioritization matrix</div><div class="scard-desc">How IS evaluates and ranks incoming work</div></div>
+              <div class="scard"><i class="ti ti-file-analytics" aria-hidden="true"></i><div class="scard-title">Project artifacts library</div><div class="scard-desc">Templates, charters, and status reports</div></div>
+              <div class="scard"><i class="ti ti-table" aria-hidden="true"></i><div class="scard-title">Project status on a page</div><div class="scard-desc">Live portfolio view for IS leadership</div></div>
+            </div>
+          </div>
+        </div>
+
+        <div id="spoke-operations" class="spoke-content">
+          <div class="breadcrumb"><a onclick="showSpoke('home')">IS home</a> <i class="ti ti-chevron-right" style="font-size:10px;" aria-hidden="true"></i> Operations</div>
+          <div class="section-title"><i class="ti ti-activity" aria-hidden="true"></i> Operations dashboard</div>
+          <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:18px;">
+            <div style="background:var(--white);border:0.5px solid var(--line);border-radius:10px;padding:12px;text-align:center;"><div style="font-size:22px;font-weight:600;color:var(--pine);">2</div><div style="font-size:12px;color:var(--muted);">Open incidents</div></div>
+            <div style="background:var(--white);border:0.5px solid var(--line);border-radius:10px;padding:12px;text-align:center;"><div style="font-size:22px;font-weight:600;color:var(--pine);">14</div><div style="font-size:12px;color:var(--muted);">Changes this month</div></div>
+            <div style="background:var(--white);border:0.5px solid var(--line);border-radius:10px;padding:12px;text-align:center;"><div style="font-size:22px;font-weight:600;color:#166534;">99.2%</div><div style="font-size:12px;color:var(--muted);">Uptime (30 days)</div></div>
+          </div>
+          <div class="section-title"><i class="ti ti-book" aria-hidden="true"></i> Runbooks and procedures</div>
+          <div class="service-list">
+            <div class="scard"><i class="ti ti-wifi-off" aria-hidden="true"></i><div class="scard-title">Network outage response</div><div class="scard-desc">Steps for diagnosing and escalating connectivity issues</div></div>
+            <div class="scard"><i class="ti ti-server-off" aria-hidden="true"></i><div class="scard-title">Server maintenance</div><div class="scard-desc">Scheduled maintenance windows and rollback steps</div></div>
+            <div class="scard"><i class="ti ti-lock-open" aria-hidden="true"></i><div class="scard-title">Security incident response</div><div class="scard-desc">Containment, escalation, and notification procedures</div></div>
+          </div>
+        </div>
+
+        <div id="spoke-processes" class="spoke-content">
+          <div class="breadcrumb"><a onclick="showSpoke('home')">IS home</a> <i class="ti ti-chevron-right" style="font-size:10px;" aria-hidden="true"></i> Processes</div>
+          <div class="section-title"><i class="ti ti-clipboard-list" aria-hidden="true"></i> Policies and procedures</div>
+          <div class="service-list">
+            <div class="scard"><i class="ti ti-shield" aria-hidden="true"></i><div class="scard-title">Acceptable use policy</div><div class="scard-desc">District technology usage guidelines</div></div>
+            <div class="scard"><i class="ti ti-key" aria-hidden="true"></i><div class="scard-title">Password and access policy</div><div class="scard-desc">Credential standards and MFA requirements</div></div>
+            <div class="scard"><i class="ti ti-cloud" aria-hidden="true"></i><div class="scard-title">Cloud governance policy</div><div class="scard-desc">Approved platforms and data classification rules</div></div>
+            <div class="scard"><i class="ti ti-refresh" aria-hidden="true"></i><div class="scard-title">Change management process</div><div class="scard-desc">How IS reviews and approves system changes</div></div>
+          </div>
+          <div class="section-title"><i class="ti ti-template" aria-hidden="true"></i> Templates library</div>
+          <div class="service-list">
+            <div class="scard"><i class="ti ti-file-plus" aria-hidden="true"></i><div class="scard-title">Project charter template</div><div class="scard-desc">Standard charter for new IS projects</div></div>
+            <div class="scard"><i class="ti ti-report" aria-hidden="true"></i><div class="scard-title">Status report template</div><div class="scard-desc">Weekly project status one-pager</div></div>
+          </div>
+        </div>
+
+        <div id="spoke-staff" class="spoke-content">
+          <div class="breadcrumb"><a onclick="showSpoke('home')">IS home</a> <i class="ti ti-chevron-right" style="font-size:10px;" aria-hidden="true"></i> Staff</div>
+          <div class="section-title"><i class="ti ti-users" aria-hidden="true"></i> IS team directory</div>
+          <div class="staff-grid">
+            <div class="staff-card"><div class="staff-av">JD</div><div class="staff-name">John D.</div><div class="staff-role">IT Business Systems</div></div>
+            <div class="staff-card"><div class="staff-av" style="background:#2D5A3D;">CT</div><div class="staff-name">Carlson T.</div><div class="staff-role">IS Manager</div></div>
+            <div class="staff-card"><div class="staff-av" style="background:#3B5E8A;">GW</div><div class="staff-name">Greta W.</div><div class="staff-role">IS Director</div></div>
+            <div class="staff-card"><div class="staff-av" style="background:#6B4E35;">JF</div><div class="staff-name">Jessica F.</div><div class="staff-role">Systems Analyst</div></div>
+          </div>
+          <div style="margin-top:16px;" class="section-title"><i class="ti ti-sitemap" aria-hidden="true"></i> Org chart</div>
+          <div style="background:var(--white);border:0.5px solid var(--line);border-radius:10px;padding:14px;font-size:13px;">
+            <div style="display:flex;flex-direction:column;align-items:center;gap:8px;">
+              <div style="background:var(--pine);color:#fff;padding:6px 18px;border-radius:6px;font-weight:500;">IS Director</div>
+              <div style="width:0.5px;height:16px;background:var(--line);"></div>
+              <div style="display:flex;gap:24px;align-items:flex-start;">
+                <div style="display:flex;flex-direction:column;align-items:center;gap:6px;"><div style="background:#2D5A3D;color:#fff;padding:5px 14px;border-radius:6px;font-size:12px;">IS Manager</div><div style="width:0.5px;height:12px;background:var(--line);"></div><div style="display:flex;gap:8px;"><div style="background:#F0F4F0;color:var(--pine);border:0.5px solid var(--line);padding:4px 10px;border-radius:6px;font-size:11px;">IT Bus. Systems</div><div style="background:#F0F4F0;color:var(--pine);border:0.5px solid var(--line);padding:4px 10px;border-radius:6px;font-size:11px;">Sys. Analyst</div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <aside class="sidebar">
+      <div class="sidebar-section">
+        <div class="sidebar-title">What's happening</div>
+        <div class="news-item"><div class="news-label">Phase II governance kickoff — July 6</div><div class="news-date">Posted Jun 25</div></div>
+        <div class="news-item"><div class="news-label">Workday Prism use case review</div><div class="news-date">Posted Jun 20</div></div>
+        <div class="news-item"><div class="news-label">Teller cashering workshop #3</div><div class="news-date">Posted Jun 18</div></div>
+        <div class="news-item"><div class="news-label">MS365 Copilot pilot update</div><div class="news-date">Posted Jun 10</div></div>
+      </div>
+      <div class="sidebar-section">
+        <div class="sidebar-title">IS contacts</div>
+        <div style="font-size:13px;color:var(--slate);line-height:1.8;">
+          <div><i class="ti ti-ticket" style="font-size:13px;margin-right:5px;color:var(--pine);" aria-hidden="true"></i>Help desk ext. 2000</div>
+          <div><i class="ti ti-mail" style="font-size:13px;margin-right:5px;color:var(--pine);" aria-hidden="true"></i>is-help@ebrpd.org</div>
+          <div><i class="ti ti-alert-triangle" style="font-size:13px;margin-right:5px;color:var(--pine);" aria-hidden="true"></i>Urgent: ext. 2001</div>
+        </div>
+      </div>
+      <div class="sidebar-section">
+        <div class="sidebar-title">Meet IS divisions</div>
+        <div class="div-item"><div class="div-name"><i class="ti ti-headset" style="font-size:14px;" aria-hidden="true"></i> Services</div><div class="div-sub">Catalog, SLAs, requests</div></div>
+        <div class="div-item"><div class="div-name"><i class="ti ti-folders" style="font-size:14px;" aria-hidden="true"></i> Projects</div><div class="div-sub">Portfolio and PM</div></div>
+        <div class="div-item"><div class="div-name"><i class="ti ti-activity" style="font-size:14px;" aria-hidden="true"></i> Operations</div><div class="div-sub">Runbooks and incidents</div></div>
+        <div class="div-item"><div class="div-name"><i class="ti ti-clipboard-list" style="font-size:14px;" aria-hidden="true"></i> Processes</div><div class="div-sub">Policies and templates</div></div>
+        <div class="div-item"><div class="div-name"><i class="ti ti-users" style="font-size:14px;" aria-hidden="true"></i> Staff</div><div class="div-sub">Directory and org chart</div></div>
+      </div>
+    </aside>
+  </div>
+</div>
+
+<script>
+const HEROES={home:"Hello, and welcome to IS on The Branch!",services:"IS Services — service catalog and support",projects:"IS Projects — portfolio and PM methodology",operations:"IS Operations — runbooks and incident management",processes:"IS Processes — policies, procedures, and templates",staff:"IS Staff — team directory and org chart"};
+function showSpoke(id){
+  document.querySelectorAll('.spoke-content').forEach(el=>el.classList.remove('active'));
+  document.querySelectorAll('.spoke-btn').forEach(el=>el.classList.remove('active'));
+  document.querySelectorAll('.nav-link').forEach(el=>el.classList.remove('active'));
+  document.getElementById('spoke-'+id).classList.add('active');
+  document.getElementById('hero-text').textContent=HEROES[id]||HEROES.home;
+  document.querySelectorAll('.spoke-btn').forEach(b=>{if(b.textContent.trim().toLowerCase().includes(id)||( id==='home'&&b.textContent.includes('Home')))b.classList.add('active');});
+  document.querySelectorAll('.nav-link').forEach(a=>{if(a.getAttribute('onclick')&&a.getAttribute('onclick').includes(id))a.classList.add('active');});
+}
+</script>
